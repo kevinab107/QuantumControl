@@ -19,14 +19,14 @@ Below given is a short description of the planned software development timeline
 
                                  10/10/19---------------|-----Complete the Simulation and Heuristics system
                                                         |
-                                 24/10/19---------------|-----Code clean-up and documentation   / Add to git                                                                                     | 
+                                 24/10/19---------------|-----Code clean-up and documentation   / Add to git                                                                                     
                                  24/10/19---------------|----- Convert the system output to dynamic decoupling sequence     
                                                         |
                                  24/10/19---------------|----- Integrate with open quantum control
                                                         |           - https://github.com/qctrl/python-open-controls.git
-                                                        |            - Use open quantum control to make use of IBM Q                                                                             |                       |
+                                                        |            - Use open quantum control to make use of IBM Q                                                                                                 
                                                         |
-                              Deadline to be decided----|----- Create a feedback system from IBM Q using qistkit and improve the                                                                 |      RL agent based on realtime feedback
-                                                        |       
+                              Deadline to be decided----|----- Create a feedback system from IBM Q using qistkit and improve the                                                   
+                                                        |      RL agent based on realtime feedback 
                                                         |
                                                         |------ Apply an improved RL algorithm and compare the 
