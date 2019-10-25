@@ -10,7 +10,7 @@ from qutip.control import *
 from ..exceptions.exceptions import ArgumentsValueError
 
 
-class SystemVariables(object):   #pylint: disable=too-few-public-methods
+class QubitDynamics(object):  
     """
     Creates a System environment with an initialized state of the qubit. 
     Parameters
