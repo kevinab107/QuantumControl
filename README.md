@@ -20,9 +20,9 @@ Below given is a short description of the planned software development timeline
                                  10/10/19---------------|-----Complete the Simulation and Heuristics system
                                                         |
                                  24/10/19---------------|-----Code clean-up and documentation   / Add to git                    
-                                 24/10/19---------------|----- Convert the system output to dynamic decoupling sequence     
+                                 24/11/19---------------|----- Convert the system output to dynamic decoupling sequence     
                                                         |
-                                 24/10/19---------------|----- Integrate with open quantum control
+                                 24/12/19---------------|----- Integrate with open quantum control
                                                         |           - https://github.com/qctrl/python-open-controls.git
                                                         |           - Use open quantum control to make use of IBM Q               
                                                         |
