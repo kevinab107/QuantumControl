@@ -308,7 +308,34 @@ class SingleQubitControls(object):
 
         return np.sum(self.durations)
 
+def _check_valid_operation(rabi_rotations, detuning_rotations):
+    """
+    Private method to check if there is a rabi_rotation and detuning rotation at the same
+    offset
 
+    Parameters
+    ----------
+    rabi_rotations : numpy.ndarray
+        Rabi rotations at each offset
+    detuning_rotations : numpy.ndarray
+        Detuning rotations at each offset
+
+    Returns
+    -------
+    bool
+        Returns True if there is not an instance of rabi rotation and detuning rotation
+        at the same offset
+    """
+
+    rabi_rotation_index = set(np.where(rabi_rotations > 0.)[0])
+    detuning_rotation_index = set(np.where(detuning_rotations > 0.)[0])
+
+    check_common_index = rabi_rotation_index.intersection(detuning_rotation_index)
+
+    if check_common_index:
+        return False
+
+    return True
 
 if __name__ == '__main__':
     pass
