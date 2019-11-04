@@ -14,7 +14,7 @@
 
 """
 Contains the simulation required for finding the next state. 
-TODO : Structure this file into different class (OOP)
+TODO [OOP] : Structure this file into different class (OOP)
 Under development (code for experimentation.) RL will be experimented here
 """
 
@@ -34,7 +34,7 @@ import qutip as q
 #        the maximum fidelity
 
 #     For computational reasons we go by method 2 [it goes better with RL approach]
-# TODO : CUrrently the implemention is limited to single qubits. Make it generic using numpy array for n-qubits
+# TODO [SCALE]: CUrrently the implemention is limited to single qubits. Make it generic using numpy array for n-qubits
 
 segment_duration =  .25   # Ensure that this value is in comparison with the system parameters
                           # that affect the spin precession
@@ -46,7 +46,7 @@ def get_segment_duration():
     return segment_duration
 
 def get_current_segment():
-    #TODO : Ensure that all controls has same length
+    #TODO [STANDARDIZE] : Ensure that all controls has same length
     return len(control_detuning)
 
 
@@ -55,7 +55,7 @@ def get_current_segment():
 # detuning, Omega_x and Omega_y are the control parameters (or the actions) which can be varied
 # for each time segment. Based on these controls the system will evolve into a new state. We start
 # with controlling only the amplitude  and not the wave type (ie its always square wave)
-# TODO : Have a functionality for changing the wave type
+# TODO [SCALE] : Have a functionality for changing the wave type
 
 control_detuning = []
 control_omega_x = []
@@ -92,7 +92,7 @@ def get_omega_y_control(t):
 
 #update the control list with the latest 
 def append_controls(detuning, omega_x, omega_y):
-    #TODO : Ensure all the control list has same lenght
+    #TODO [STANDARDIZE] : Ensure all the control list has same lenght
     control_detuning.append(detuning)
     control_omega_x.append(omega_x)
     control_omega_y.append(omega_y)
@@ -114,7 +114,7 @@ def Omega_y(t, args):
     return get_omega_y_control(t)*h/2     # Rabi rate  along y
 
 def noise(t, args):  
-    #TODO :  make this staochastic using random variable for each segment
+    #TODO [ALGORITHM]:  make this staochastic using random variable for each segment
     return np.sin(10*t)*10*h/2
 
 H_0 = q.sigmaz()
@@ -156,13 +156,16 @@ for states in output.states:
 #      The inverse of the fidelity ranges from 1 to infinity. This ensures that cost to go is given priority over cost, thus ensuring elimination
 #      of random changes. When the cost to go approaches zero priority will be given to cost for fine tuning the pulse amplitudes 
 
-OMEGA_X_UPPER_BOUND = 10
-OMEGA_X_CHANGE = 1
+#TODO [STANDARDIZE] : Ensure all the values are float for consistancy. numpy mgrid stores the value aS 0. while a float is 0.0
+# This may create inconsitancy while converting to string. This is a minor issue as the coordinates will be always 
+# used from the coordinate matrix. (Since we are restricting any other control coordinate)
+OMEGA_X_UPPER_BOUND = 10.0
+OMEGA_X_CHANGE = 1.0
 
-OMEGA_Y_UPPER_BOUND = 10
-OMEGA_Y_CHANGE = 1
+OMEGA_Y_UPPER_BOUND = 10.0
+OMEGA_Y_CHANGE = 1.0
 
-DETUNING_CONTROL_UPPER_BOUND = w0 
+DETUNING_CONTROL_UPPER_BOUND = 0.5
 DETUNING_CONTROL_CHANGE = 0.1
 # Note that when the upper bount for detuning control is w0 (resonance frequency)
 # detuning will be zero. See the defnition of detuning(t, args)
@@ -176,7 +179,76 @@ detuning_actions = np.arange(0, DETUNING_CONTROL_UPPER_BOUND , DETUNING_CONTROL_
 # with corresponding cost of the transition in a map for easier computation
 
 ##Use a numpy mgrid to store the above actions for compulation of eucledian distance. 
-
+#%%
 from queue import PriorityQueue
+from sklearn.metrics.pairwise import euclidean_distances
+#TODO [OOP] : Encapsulate the control range into a class (ControlRange) for easy initialization and variations 
 
 
+
+#Create an array of coordinates corresponding to all possible combination of 
+#control actions 
+# TODO: Make this a method of ControlRange
+
+def get_control_cordinates_3d():
+    x,y,z = np.mgrid[0. : OMEGA_X_UPPER_BOUND : OMEGA_X_CHANGE,
+                    0. : OMEGA_Y_UPPER_BOUND : OMEGA_Y_CHANGE,
+                    0. : DETUNING_CONTROL_UPPER_BOUND : DETUNING_CONTROL_CHANGE]
+
+    control_coordinates = np.empty(x.shape + (3,), dtype = float)
+    control_coordinates[:,:,:,0] = x                   
+    control_coordinates[:,:,:,1] = y
+    control_coordinates[:,:,:,2] = z 
+
+    control_coordinates = np.reshape(control_coordinates, 
+                                    (x.shape[0]*x.shape[1]*x.shape[2], 3))
+    return control_coordinates
+
+## Find a proximity array for each cooridnate in the control space. Use eucledian distance for finding the 
+## 'k' close elements. When k is a training hyperparameter to define the search spectrum of controls. 
+# ## Here we are using eucledian distance SO : 
+# ##                  1. Use a ascending sorted array for fine tuning the controls
+#                     2. Use a descending sorted array for broad tuning
+#             The above differentiation can be decided ( ie between fine tuning and broad tuning based of the
+#             fidelity cost to go. For larger cost to go (or fidelity we expect broad changes in the control for 
+#             larger rotations. 
+#             But when the fidelity approach 1 we need fine tuning of the controls. 
+#             This differentiation can be decided on a finetuning_treshold
+
+#TODO [ALGORITHM] : The search of control space currently is based on the eucledian distance in control space and 
+# a treshold in the fidelity base. Need to improve the algorithm to introduce a statistical mixing of these values.
+# An approach could be to use the gradient of rotation in the direction of the final state as the correctness measure or reward
+#   ie. Since the controls is associated with rotation in x,y,z axis, the set of parameter that creates the maximum rotation in the 
+#   direction of the final state should have an advantage. 
+
+#%%
+
+## ordered nearnest neighbours for fine tuning
+def get_ordered_knn_map(k_value):
+    
+    coordinates = get_control_cordinates_3d()
+    ecucledian_distance_matrix = euclidean_distances(coordinates, coordinates)
+    ordered_neighbours_map = {}
+    for index in range(len(coordinates)):
+        proximity = ecucledian_distance_matrix[index].argsort()[:k_value]
+        sorted_neighbours = coordinates[proximity]
+        current_coordinate  = str(coordinates[index])
+        ordered_neighbours_map[current_coordinate] = sorted_neighbours
+    return ordered_neighbours_map
+
+## ordered farthest neighbours for broad tuning ## needs to improve the logic. Insted of fartherst 
+## a central portion could be an immediate improvement
+def get_ordered_kfn_map(k_value):
+    
+    coordinates = get_control_cordinates_3d()
+    ecucledian_distance_matrix = euclidean_distances(coordinates, coordinates)
+    ordered_neighbours_map = {}
+    for index in range(len(coordinates)):
+        proximity = ecucledian_distance_matrix[index].argsort()[::-1][:k_value]
+        sorted_neighbours = coordinates[proximity]
+        current_coordinate  = str(coordinates[index])
+        ordered_neighbours_map[current_coordinate] = sorted_neighbours
+    return ordered_neighbours_map
+
+## TODO [OOP] : Convert the control space functionalities to a Class and define the relevant get and 
+# set methods
