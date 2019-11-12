@@ -1,3 +1,17 @@
+# Copyright [2019] [Kevin Abraham]
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import qutip as q
 import numpy as np 
 from queue import PriorityQueue
@@ -32,11 +46,12 @@ class State(object):
     # This may create inconsitancy while converting to string. This is a minor issue as the coordinates will be always 
     # used from the coordinate matrix. (Since we are restricting any other control coordinate
     """
-    h = 1 # planks constant 
+    
     def __init__(self, 
                  interval_width, 
                  target_unitary, 
-                 initial_state, hamiltonian):
+                 initial_state, 
+                 hamiltonian):
      
        self.interval_width = interval_width
        self.target_unitary = target_unitary
@@ -53,52 +68,46 @@ class State(object):
     def get_interval_width(self):
         return self.interval_width
 
-    def is_finetuning_required(self):
-        return get_fidelity() > get_fine_tuning_threshlod()
-
-    def get_fine_tuning_threshlod(self):
-        return self.fine_tuning_threshold
-
     def get_fidelity(self):
-        return (get_target_state().dag()*get_current_state()).norm()
+        return (self.get_target_state().dag()* self.get_current_state()).norm()
     
     def get_transition_fidelity(self, transition_state):
-        return (get_target_state().dag()*transition_state).norm()
+        return (self.get_target_state().dag()*transition_state).norm()
 
-    def get_hamiltonian_static_z(self):
-        return hamiltonian[0]
-    
     def get_hamiltonian_operator_z(self):
-        return hamiltonian[0]
+        return self.hamiltonian[0]
     
     def get_hamiltonian_operator_x(self):
-        return hamiltonian[1]
+        return self.hamiltonian[1]
     
     def get_hamiltonian_operator_y(self):
-        return hamiltonian[2]
+        return self.hamiltonian[2]
 
     def get_hamiltonian_operator_noise(self):
-        return hamiltonian[3]
+        return self.hamiltonian[3]
 
     def noise(self, t, args):  
         #TODO [ALGORITHM]:  make this staochastic using random variable for each segment
+        h = 1 
         return np.sin(10*t)*10*h/2
     
     def update_state(self, next_state):
         self.current_state = next_state
 
     def get_hamiltonian_control(self, controls):
+        h = 1 
         detuning = controls[0]
         omegax = controls[1]
         omegay = controls[2]
-        H_control = (h/2)*(detuning*get_hamiltonian_operator_z() 
-                           + omegax*get_hamiltonian_operator_x() 
-                           + omegay*get_hamiltonian_operator_y )
+        H_z = self.get_hamiltonian_operator_z()
+        H_x = self.get_hamiltonian_operator_x()
+        H_y = self.get_hamiltonian_operator_y()
+        H_control = (h/2)*(detuning*H_z 
+                           + omegax*H_x 
+                           + omegay*H_y)
         return H_control   
 
     def get_hamiltonian(self, controls):
-        H_control = get_hamiltonian_control(controls)        
-        H_noise = [get_hamiltonian_operator_noise(), noise]     
+        H_control = self.get_hamiltonian_control(controls)        
+        H_noise = [self.get_hamiltonian_operator_noise(), self.noise]     
         return [H_control, H_noise]  
-
-

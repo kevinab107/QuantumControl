@@ -1,3 +1,17 @@
+# Copyright [2019] [Kevin Abraham]
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import numpy as np 
 from sklearn.metrics.pairwise import euclidean_distances
 
@@ -52,38 +66,38 @@ class ControlSpace:
         return self.control_change
 
     def get_control_bound_detuning(self):
-        return get_control_bound()[0]
+        return self.get_control_bound()[0]
     
     def get_control_change_detuning(self):
-        return get_control_change()[0]
+        return self.get_control_change()[0]
 
     def get_control_bound_omega_x(self):
-        return get_control_bound()[1]
+        return self.get_control_bound()[1]
     
     def get_control_change_omega_x(self):
-        return get_control_change()[1]
+        return self.get_control_change()[1]
 
     def get_control_bound_omega_y(self):
-        return get_control_bound()[2]
+        return self.get_control_bound()[2]
     
     def get_control_change_omega_y(self):
-        return get_control_change()[2]
+        return self.get_control_change()[2]
 
     def get_detuning_actions(self):
         return np.arange(0, 
-                         get_control_bound_detuning(), 
-                         get_control_change_detuning())
+                         self.get_control_bound_detuning(), 
+                         self.get_control_change_detuning())
     
     def get_omega_x_actions(self):
         return np.arange(0, 
-                         get_control_bound_omega_x(), 
-                         get_control_change_omega_x())
+                         self.get_control_bound_omega_x(), 
+                         self.get_control_change_omega_x())
                     
     
     def get_omega_y_actions(self):
         return np.arange(0, 
-                         get_control_bound_omega_y(), 
-                         get_control_change_omega_y())    
+                         self.get_control_bound_omega_y(), 
+                         self.get_control_change_omega_y())    
     
     def get_ordered_knn_map(self):
         return self.ordered_knn_map
@@ -92,10 +106,10 @@ class ControlSpace:
         return self.ordered_kfn_map
     
     def get_nearest_controls(self, control):
-        return get_ordered_knn_map()[control]
+        return self.get_ordered_knn_map()[control]
 
     def get_farthest_controls(self, control):
-        return get_ordered_kfn_map()[control]
+        return self.get_ordered_kfn_map()[control]
 
     def get_control_cordinates_3d(self):
         
@@ -113,9 +127,9 @@ class ControlSpace:
         TODO: Make this a method of ControlRange
         """
         
-        x,y,z = np.mgrid[0. : get_control_bound_omega_x() : get_control_change_omega_x(),
-                        0. : get_control_bound_omega_y()  : get_control_change_omega_y(),
-                        0. : get_control_bound_detuning()  : get_control_change_detuning()]
+        x,y,z = np.mgrid[0. : self.get_control_bound_omega_x() : self.get_control_change_omega_x(),
+                         0. : self.get_control_bound_omega_y() : self.get_control_change_omega_y(),
+                         0. : self.get_control_bound_detuning(): self.get_control_change_detuning()]
 
         control_coordinates = np.empty(x.shape + (3,), dtype = float)
         control_coordinates[:,:,:,0] = x                   
@@ -149,7 +163,7 @@ class ControlSpace:
         direction of the final state should have an advantage. 
         """
         
-        coordinates = get_control_cordinates_3d()
+        coordinates = self.get_control_cordinates_3d()
         ecucledian_distance_matrix = euclidean_distances(coordinates, coordinates)
         ordered_neighbours_map = {}
         for index in range(len(coordinates)):
@@ -166,7 +180,7 @@ class ControlSpace:
         a central portion could be an immediate improvement
         """
         
-        coordinates = get_control_cordinates_3d()
+        coordinates = self.get_control_cordinates_3d()
         ecucledian_distance_matrix = euclidean_distances(coordinates, coordinates)
         ordered_neighbours_map = {}
         for index in range(len(coordinates)):
@@ -177,6 +191,5 @@ class ControlSpace:
         self.ordered_kfn_map = ordered_neighbours_map
 
     def set_ordered_nn_maps(self):
-        set_ordered_knn_map()
-        set_ordered_kfn_map()
-
+        self.set_ordered_knn_map()
+        self.set_ordered_kfn_map()
