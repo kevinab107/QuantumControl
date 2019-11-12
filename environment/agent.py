@@ -22,7 +22,8 @@ class Agent:
                  fine_tuning_threshold,
                  state,
                  control_space,
-                 initial_control = '[0. 0. 0.]' ):
+                 initial_control = '[0. 0. 0.]', 
+                 current_control = None):
        
        self.fine_tuning_threshold = fine_tuning_threshold
        self.initial_control = '[0. 0. 0.]' 
@@ -30,7 +31,7 @@ class Agent:
        self.control_omega_x = []
        self.control_omega_y =[]
        self.state = state
-       self.current_control = initial_control
+       self.current_control = '[0. 0. 0.]' 
        self.control_space = control_space
 
     def get_current_segment(self):
@@ -47,6 +48,9 @@ class Agent:
 
     def is_finetuning_required(self):
         return self.state.get_fidelity() > self.get_fine_tuning_threshlod()
+
+    def get_fine_tuning_threshlod(self):
+        return self.fine_tuning_threshold
 
     def get_detuning_control(self, t):
         segment = self.get_segment(t)
@@ -118,7 +122,7 @@ class Agent:
         
         for action in actions : 
             H = environment.get_hamiltonian(action)
-            t = np.arange(0,environment.get_segment_duration(),.1)
+            t = np.arange(0,environment.get_interval_width(),.1)
             transition_state = q.mesolve(H, current_state, t, []).states[-1]
             #TODO : add the eucledian distance to the action cost. Improve the logic for bias
             action_cost += 1
@@ -127,7 +131,7 @@ class Agent:
                 action_cost += 1 
             else:
                 action_cost = 0 
-            Q = get_cost_to_go(fidelity)  + action_cost
+            Q = self.get_cost_to_go(fidelity)  + action_cost
             if(Q < minimum_cost):
                     minimum_cost = Q
                     next_state = transition_state
@@ -138,13 +142,15 @@ class Agent:
         environment.update_state(next_state)
         return next_state
 
-    def learn_rollout(self, state):
-        environment = state      
+    def learn_rollout(self):
+        environment = self.state      
         fidelity = environment.get_fidelity()
+        current_state = environment.get_current_state()
         states = []
         while(fidelity < 1):
             states.append(environment.get_current_state())
-            current_state = self.get_next_state(current_state, get_current_control(), environment)
+            current_state = self.get_next_state(current_state, 
+                                            self.current_control, environment)
 
             fidelity = state.get_fidelity()
             print(current_state, fidelity)

@@ -1,0 +1,276 @@
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.10208725-0.46764111j]
+ [-0.07303525-0.87496048j]] 0.8780034067476405
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.08989225-0.4117783j ]
+ [-0.35587966-0.83409093j]] 0.9068395729092977
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.07589775-0.34767233j]
+ [-0.54665317-0.75798008j]] 0.9345391832508149
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.06382455-0.29236739j]
+ [-0.66671306-0.68259903j]] 0.9541738496755641
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.05427924-0.24864227j]
+ [-0.74305881-0.61894619j]] 0.9670733094648222
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.0468607 -0.21465944j]
+ [-0.79349358-0.56753268j]] 0.9755641441757205
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.04105109-0.1880468j ]
+ [-0.82826692-0.52623865j]] 0.9813017933703145
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.03643085-0.16688237j]
+ [-0.85320868-0.49280626j]] 0.9853035402567806
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.03269367-0.14976311j]
+ [-0.8717244 -0.46540167j]] 0.9881812255349294
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02962129-0.13568917j]
+ [-0.88587906-0.44263904j]] 0.9903085523382078
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02705776-0.12394617j]
+ [-0.89697345-0.42349009j]] 0.9919199683473864
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02489043-0.11401803j]
+ [-0.90585596-0.40719202j]] 0.9931668318052431
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02303639-0.10552508j]
+ [-0.91309874-0.39317231j]] 0.9941497789788947
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02143385-0.09818414j]
+ [-0.9190982 -0.38099734j]] 0.9949374173339885
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.02003585-0.0917802j ]
+ [-0.92413631-0.37033368j]] 0.9955777014814456
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01880624-0.08614759j]
+ [-0.92841821-0.3609218j ]] 0.996104873270979
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01771675-0.08115687j]
+ [-0.93209609-0.35255717j]] 0.9965438671474646
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01674504-0.07670564j]
+ [-0.93528492-0.34507677j]] 0.9969131602560909
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.0158732-0.07271193j]
+ [-0.9380729-0.3383493j ]] 0.9972266624997798
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01508676-0.0691094j ]
+ [-0.94052876-0.33226787j]] 0.9974950026927922
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01437387-0.06584379j]
+ [-0.94270669-0.32674467j]] 0.9977264090369555
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01372476-0.06287035j]
+ [-0.94464998-0.32170694j]] 0.997927327240341
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01313129-0.0601518j ]
+ [-0.94639359-0.31709384j]] 0.9981028652940253
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01258667-0.05765701j]
+ [-0.94796592-0.31285437j]] 0.9982571034748883
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01208515-0.05535962j]
+ [-0.94939039-0.30894522j]] 0.9983933402402184
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01162182-0.05323723j]
+ [-0.9506864 -0.30532949j]] 0.9985142616982572
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01119252-0.05127069j]
+ [-0.95187017-0.30197554j]] 0.9986220726851883
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01079365-0.04944353j]
+ [-0.95295533-0.2988561j ]] 0.9987185963298637
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01042209-0.04774151j]
+ [-0.95395345-0.29594753j]] 0.9988053505760781
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.01007515-0.04615226j]
+ [-0.95487437-0.29322925j]] 0.9988836071338806
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00975048-0.04466497j]
+ [-0.95572654-0.29068326j]] 0.9989544378596205
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00944601-0.04327029j]
+ [-0.95651715-0.28829395j]] 0.9990187459511739
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00915992-0.04195975j]
+ [-0.95725258-0.28604715j]] 0.9990773117811383
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00889059-0.04072599j]
+ [-0.95793831-0.28393053j]] 0.9991307977190931
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00863659-0.03956248j]
+ [-0.95857912-0.28193314j]] 0.9991797734861277
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00839666-0.03846339j]
+ [-0.9591792 -0.28004522j]] 0.9992247312659488
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00816966-0.03742355j]
+ [-0.95974226-0.27825803j]] 0.9992660980626554
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00795457-0.03643829j]
+ [-0.96027156-0.27656375j]] 0.9993042457594078
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00775049-0.03550345j]
+ [-0.96077   -0.27495533j]] 0.9993394993914086
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.0075566 -0.03461525j]
+ [-0.96124017-0.27342643j]] 0.999372144043865
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00737214-0.0337703j]
+ [-0.96168437-0.2719713j]] 0.9994024305896568
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00719646-0.03296555j]
+ [-0.96210465-0.27058478j]] 0.9994305797183503
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00702894-0.03219817j]
+ [-0.96250288-0.26926211j]] 0.9994567883254253
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00686903-0.03146564j]
+ [-0.96288072-0.26799899j]] 0.9994812305353759
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00671621-0.03076563j]
+ [-0.96323967-0.26679149j]] 0.9995040613925331
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00657004-0.03009603j]
+ [-0.96358111-0.26563603j]] 0.9995254193125702
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00643008-0.0294549j ]
+ [-0.96390627-0.26452932j]] 0.9995454281305728
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00629595-0.02884047j]
+ [-0.96421627-0.26346835j]] 0.9995641990891719
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00616729-0.02825112j]
+ [-0.96451214-0.26245033j]] 0.9995818320726418
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00604378-0.02768532j]
+ [-0.9647948 -0.26147273j]] 0.9995984171403051
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00592511-0.02714172j]
+ [-0.96506512-0.26053318j]] 0.9996140356243995
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.005811  -0.02661902j]
+ [-0.96532387-0.25962952j]] 0.9996287611281683
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.0057012 -0.02611605j]
+ [-0.96557178-0.25875972j]] 0.9996426603995118
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00559547-0.0256317j ]
+ [-0.9658095 -0.25792191j]] 0.9996557940695625
+number of actions : 100
+Quantum object: dims = [[2], [1]], shape = (2, 1), type = ket
+Qobj data =
+[[ 0.00549358-0.02516497j]
+ [-0.96603765-0.25711437j]] 0.9996682174477887
+number of actions : 100
