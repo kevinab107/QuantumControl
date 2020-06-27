@@ -142,6 +142,8 @@ def train(dummy_env, tf_agent):
                             avg_return = compute_avg_return(eval_env, tf_agent.policy, num_eval_episodes)
                             print('step = {0}: Average Return = {1}'.format(step, avg_return))
                             returns.append(avg_return)
+        PolicySaver(tf_agent.collect_policy).save('checkpoints/policy' + str(x))
+        PolicySaver(tf_agent.collect_policy).save_checkpoint('checkpoints/policy' + str(x))
     return (step, train_loss, returns, fidelity)
 
 
@@ -255,7 +257,8 @@ tf_dumm = tf_py_environment.TFPyEnvironment(dummy_env)
 
 agent_reinforce = get_agent(dummy_env, 'reinforce', "without_noise_trained")
 train_results = train(tf_dumm, agent_reinforce)
-#PolicySaver(agent_reinforce.collect_policy).save('/content/drive/My Drive/qControl/policy4')
+
+# %%
 
 # %%
 
